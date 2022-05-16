@@ -3,6 +3,7 @@ import cheerio from 'cheerio'
 import mongoose from 'mongoose'
 import path from 'path'
 import 'dotenv/config'
+import cors from 'cors'
 const app = express()
 
 mongoose.connect(process.env.mongoURL, {
@@ -24,6 +25,12 @@ const dataSchema = new Schema({
 
 const myData = mongoose.model('myData', dataSchema)
 
+app.use(cors(
+{
+	origin: '*',
+optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+))
 app.use(express.static('./public'))
 
 app.get('/api/v1/data', async (req, res) => {
