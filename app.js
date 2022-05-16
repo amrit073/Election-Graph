@@ -5,6 +5,7 @@ const path = require('path')
 require('dotenv/config')
 const cors = require('cors')
 const app = express()
+const fetch = require('node-fetch')
 
 
 const Schema = mongoose.Schema
