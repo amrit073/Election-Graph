@@ -3,10 +3,13 @@ var Kesabdatas =[];
 var Srijanadatas =[];
 
 const getData = async () => {
-    res = await fetch('https://electionupdate.herokuapp.com/api/v1/data')
+    res = await fetch('https://electionupdate.herokuapp.com/api/v1/data').catch(err=>console.log(err)
+    )
     // res = await fetch('http://localhost:3000/api/v1/data')
-
+    console.log(res);
+    
     resj = await res.json()
+   console.log(resj);
    
     resj.forEach((e, i) => {
         Balendatas.push(e.data[0].votes)
