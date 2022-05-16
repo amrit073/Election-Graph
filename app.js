@@ -6,15 +6,6 @@ require('dotenv/config')
 const cors = require('cors')
 const app = express()
 
-mongoose.connect(process.env.mongoURL, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-}, (err) => {
-	if (err) return err
-	app.listen(process.env.PORT || 3000, () => {
-		console.log('started listenig at port ');
-	})
-})
 
 const Schema = mongoose.Schema
 
@@ -25,6 +16,15 @@ const dataSchema = new Schema({
 
 const myData = mongoose.model('myData', dataSchema)
 
+mongoose.connect(process.env.mongoURL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+}, (err) => {
+	if (err) return err
+	app.listen( (process.env.PORT || 3000), () => {
+		console.log('started listenig at port ');
+	})
+})
 app.use(cors(
 {
 	origin: '*',
