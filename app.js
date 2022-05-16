@@ -5,7 +5,7 @@ import path from 'path'
 import 'dotenv/config'
 import cors from 'cors'
 const app = express()
-import fetch from 'nodimportch'
+import fetch from 'node-fetch'
 
 
 const Schema = mongoose.Schema
