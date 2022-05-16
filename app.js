@@ -55,6 +55,7 @@ app.get('/api/v1/data', async (req, res) => {
 	myData.find({}).exec((err, data) => {
 		// console.log(data[data.length - 1].data[0].votes==mayor[0].votes)
 		// console.log(mayor[0].votes);
+		if (err) throw err
 		if (data[data.length - 1].data[0].votes !== mayor[0].votes) {
 			console.log('data is not same , uploading');
 			
