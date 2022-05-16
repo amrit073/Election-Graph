@@ -3,8 +3,8 @@ var Kesabdatas =[];
 var Srijanadatas =[];
 
 const getData = async () => {
-    // res = await fetch('https://electionupdate.herokuapp.com/api/v1/data')
-    res = await fetch('http://localhost:3000/api/v1/data')
+    res = await fetch('https://electionupdate.herokuapp.com/api/v1/data')
+    // res = await fetch('http://localhost:3000/api/v1/data')
 
     resj = await res.json()
    
