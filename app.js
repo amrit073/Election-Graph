@@ -1,9 +1,9 @@
-import express from 'express'
-import cheerio from 'cheerio'
-import mongoose from 'mongoose'
-import path from 'path'
-import 'dotenv/config'
-import cors from 'cors'
+const express = require('express')
+const cheerio = require('cheerio')
+const mongoose = require('mongoose')
+const path = require('path')
+require('dotenv/config')
+const cors = require('cors')
 const app = express()
 
 mongoose.connect(process.env.mongoURL, {
