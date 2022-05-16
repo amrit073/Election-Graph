@@ -1,11 +1,11 @@
-const express = require('express')
-const cheerio = require('cheerio')
-const mongoose = require('mongoose')
-const path = require('path')
-require('dotenv/config')
-const cors = require('cors')
+import express from 'express'
+import cheerio from 'cheerio'
+import mongoose from 'mongoose'
+import path from 'path'
+import 'dotenv/config'
+import cors from 'cors'
 const app = express()
-const fetch = require('node-fetch')
+import fetch from 'nodimportch'
 
 
 const Schema = mongoose.Schema
