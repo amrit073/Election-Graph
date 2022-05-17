@@ -1,6 +1,7 @@
 var Balendatas = [];
 var Kesabdatas = [];
 var Srijanadatas = [];
+var Sumandatas = [];
 var img_jpg = document.getElementById('jpg-export')
 
 
@@ -17,6 +18,7 @@ const getData = async () => {
         Balendatas.push(e.data[0].votes)
         Kesabdatas.push(e.data[1].votes)
         Srijanadatas.push(e.data[2].votes)
+        Sumandatas.push(e.data[4].votes)
     })
             
 }
@@ -45,8 +47,10 @@ const fillMaps = async () => {
         name: `Srijana Shrestha - <b>${Srijanadatas[Srijanadatas.length - 1]}</b>`,
         // text : Srijanadatas[Srijanadatas.length - 1]
     }
-
-
+    var SumanSayami = {
+        y : Sumandatas,
+        name : `Suman Sayami - <b>${Sumandatas[Sumandatas.length - 1]}</b>`
+    }
     var layout = {
 
         title: 'Vote counts of major mayoral candidates in KTM.',
@@ -64,7 +68,7 @@ const fillMaps = async () => {
     };
 
     document.getElementById('gd').innerHTML = ''
-    await Plotly.newPlot("gd", [BalendraShah, KesabSthapit, SrijanaShrestha])
+    await Plotly.newPlot("gd", [BalendraShah, KesabSthapit, SrijanaShrestha, SumanSayami])
 
     await Plotly.toImage("gd", { format: "jpeg", height: 500, width: 700 }).then((url) => {
         const options = {
