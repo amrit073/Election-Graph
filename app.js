@@ -69,11 +69,11 @@ app.get('/api/v1/data', async (req, res) => {
 			
 			myData.create({ data: mayor }, (err, data) => {
 				if (err) throw err;
-				console.log(data);
+				// console.log(data);
 		
 			})
 		}
-		console.log(data);
+		// console.log(data);
 		
 		res.send(data)
 
