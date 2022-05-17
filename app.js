@@ -67,7 +67,9 @@ app.get('/api/v1/data', async (req, res) => {
 	$(vote).each((i, el) => {
 		arrv.push(el)
 	})
-
+	
+	
+	
 	// const to_send = []
 	const mayor = []
 	for (var i = 0; i < 5; i++) {
@@ -76,6 +78,7 @@ app.get('/api/v1/data', async (req, res) => {
 			votes: arrv[i].children[0].data
 		})
 	}
+
 
 	myData.find({}).exec((err, data) => {
 		// console.log(data[data.length - 1].data[0].votes==mayor[0].votes)
