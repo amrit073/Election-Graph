@@ -74,7 +74,6 @@ const fillMaps = async () => {
             },
             body: JSON.stringify({ url })
         }
-        console.log(options);
         sendImg(options)
         
         
