@@ -46,9 +46,9 @@ app.post('/api/v1/postimage', (req, res) => {
 	});
 	
 })
- const __dirname = path.resolve();
+const __dirname = path.resolve();
 app.get('/api/v1/image', (req, res) => {
-	res.sendFile(path.join(__dirname,'election.jpeg'))
+	res.sendFile(path.join(__dirname, 'election.jpeg'))
 })
 
 app.get('/api/v1/data', async (req, res) => {
@@ -86,13 +86,14 @@ app.get('/api/v1/data', async (req, res) => {
 			
 			myData.create({ data: mayor }, (err, data) => {
 				if (err) throw err;
-				// console.log(data);
-		
+				myData.find({}).exec((err, data) => {
+					if (err) throw err
+					return res.send(data)
+				})
 			})
+		} else {
+			res.send(data)
 		}
-		// console.log(data);
-		
-		res.send(data)
 
 	})
 	

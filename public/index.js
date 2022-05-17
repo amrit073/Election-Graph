@@ -20,10 +20,10 @@ const getData = async () => {
     })
             
 }
-const sendImg = async (options) =>{
-    fetch(`/api/v1/postimage`, options).catch(err=>{
-            console.log(err);
-        });
+const sendImg = async (options) => {
+    fetch(`/api/v1/postimage`, options).catch(err => {
+        console.log(err);
+    });
 }
 
 const fillMaps = async () => {
@@ -45,6 +45,24 @@ const fillMaps = async () => {
         name: `Srijana Shrestha - <b>${Srijanadatas[Srijanadatas.length - 1]}</b>`,
         // text : Srijanadatas[Srijanadatas.length - 1]
     }
+
+
+    var layout = {
+
+        title: 'Vote counts of major mayoral candidates in KTM.',
+
+        uirevision: 'true',
+
+        xaxis: { autorange: true },
+
+        yaxis: { autorange: true },
+
+        width:500,
+
+        height:800
+
+    };
+
     document.getElementById('gd').innerHTML = ''
     await Plotly.newPlot("gd", [BalendraShah, KesabSthapit, SrijanaShrestha])
 
@@ -54,7 +72,7 @@ const fillMaps = async () => {
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({url})
+            body: JSON.stringify({ url })
         }
         console.log(options);
         sendImg(options)
