@@ -3,27 +3,42 @@ var Kesabdatas = [];
 var Srijanadatas = [];
 var Sumandatas = [];
 var Madandatas = [];
+var Candidates =[];
+var Votes = [];
 var img_jpg = document.getElementById('jpg-export')
 
 
 const getData = async () => {
     res = await fetch('https://electionupdate.herokuapp.com/api/v1/data').catch(err => console.log(err))
+    // res = await fetch('http://localhost:3000/api/v1/data').catch(err => console.log(err))
     
     // res = await fetch('http://localhost:3000/api/v1/data')
-    console.log(res);
+    // console.log(res);
     
     resj = await res.json()
-    console.log(resj);
+    // console.log(resj);
    
     resj.forEach((e, i) => {
-        Balendatas.push(e.data[0].votes)
-        Kesabdatas.push(e.data[1].votes)
-        Srijanadatas.push(e.data[2].votes)
-        Madandatas.push(e.data[3].votes)
-        Sumandatas.push(e.data[4].votes)
+        
+        // Balendatas.push(e.data.find((data)=>data.name=="Balendra Shah").votes)
+        // Balendatas.push(e.data.find((data)=>data.name=="Balendra Shah").votes)
+        // Balendatas.push(e.data.find((data)=>data.name=="Balendra Shah").votes)
+        // Balendatas.push(e.data.find((data)=>data.name=="Balendra Shah").votes)
+        // Balendatas.push(e.data.find((data)=>data.name=="Balendra Shah").votes)
+
+        Balendatas.push(e.data.find((mydata)=>mydata.name=="Balendra Shah").votes)
+        Kesabdatas.push(e.data.find((mydata)=>mydata.name=="Keshav Sthapit").votes)         
+        Srijanadatas.push(e.data.find((mydata)=>mydata.name=="Shirjana Shrestha").votes)
+        Madandatas.push(e.data.find((mydata)=>mydata.name=="Madan Das Shrestha").votes)
+        Sumandatas.push(e.data.find((mydata)=>mydata.name=="Suman Sayami").votes)
     })
+    console.log(Candidates, Votes);
+    
             
 }
+
+
+
 const sendImg = async (options) => {
     fetch(`/api/v1/postimage`, options).catch(err => {
         console.log(err);
@@ -37,6 +52,7 @@ const fillMaps = async () => {
     var BalendraShah = {
         y: Balendatas,
         name: `Balendra shah - <b>${Balendatas[Balendatas.length - 1]}</b>`,
+        
         // text : Balendatas[Balendatas.length - 1]
     }
     var KesabSthapit = {
@@ -72,10 +88,11 @@ const fillMaps = async () => {
         height:800
 
     };
+    inOrder = []
 
     document.getElementById('gd').innerHTML = ''
     document.getElementById('name').innerHTML = '<b>Vote counts of major mayoral candidates in KTM.</b>'
-    await Plotly.newPlot("gd", [BalendraShah, SrijanaShrestha,KesabSthapit, MandanDasSharestha ,SumanSayami])
+    await Plotly.newPlot("gd", [BalendraShah, KesabSthapit, SrijanaShrestha, MandanDasSharestha ,SumanSayami])
 
     await Plotly.toImage("gd", { format: "jpeg", height: 500, width: 700 }).then((url) => {
         const options = {
