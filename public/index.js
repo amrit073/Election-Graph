@@ -75,7 +75,7 @@ const fillMaps = async () => {
 
     document.getElementById('gd').innerHTML = ''
     document.getElementById('name').innerHTML = '<b>Vote counts of major mayoral candidates in KTM.</b>'
-    await Plotly.newPlot("gd", [BalendraShah, KesabSthapit, SrijanaShrestha, MandanDasSharestha ,SumanSayami])
+    await Plotly.newPlot("gd", [BalendraShah, SrijanaShrestha,KesabSthapit, MandanDasSharestha ,SumanSayami])
 
     await Plotly.toImage("gd", { format: "jpeg", height: 500, width: 700 }).then((url) => {
         const options = {
