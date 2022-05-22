@@ -52,26 +52,31 @@ const fillMaps = async () => {
     var BalendraShah = {
         y: Balendatas,
         name: `Balendra shah - <b>${Balendatas[Balendatas.length - 1]}</b>`,
-        
+        votes : Balendatas[Balendatas.length - 1]
+
         // text : Balendatas[Balendatas.length - 1]
     }
     var KesabSthapit = {
         y: Kesabdatas,
         name: `Keshab Sthapit - <b>${Kesabdatas[Kesabdatas.length - 1]}</b>`,
+        votes : Kesabdatas[Kesabdatas.length - 1]
         // text : Kesabdatas[Kesabdatas.length - 1]
     }
     var SrijanaShrestha = {
         y: Srijanadatas,
         name: `Srijana Shrestha - <b>${Srijanadatas[Srijanadatas.length - 1]}</b>`,
+        votes : Srijanadatas[Srijanadatas.length - 1]
         // text : Srijanadatas[Srijanadatas.length - 1]
     }
     var SumanSayami = {
         y : Sumandatas,
-        name : `Suman Sayami - <b>${Sumandatas[Sumandatas.length - 1]}</b>`
+        name : `Suman Sayami - <b>${Sumandatas[Sumandatas.length - 1]}</b>`,
+        votes : Sumandatas[Sumandatas.length - 1]
     }
     var MandanDasSharestha ={
         y: Madandatas,
-        name : `Mandan Das Shrestha - <b>${Madandatas[Madandatas.length - 1]}</b>`
+        name : `Mandan Das Shrestha - <b>${Madandatas[Madandatas.length - 1]}</b>`,
+        votes : Madandatas[Madandatas.length - 1]
     }
     var layout = {
 
@@ -88,11 +93,12 @@ const fillMaps = async () => {
         height:800
 
     };
-    inOrder = []
+    const noOrder = [BalendraShah, KesabSthapit, SrijanaShrestha, MandanDasSharestha ,SumanSayami]
+    const inOrder = noOrder.sort((a, b)=> b.votes - a.votes )
 
     document.getElementById('gd').innerHTML = ''
     document.getElementById('name').innerHTML = '<b>Vote counts of major mayoral candidates in KTM.</b>'
-    await Plotly.newPlot("gd", [BalendraShah, KesabSthapit, SrijanaShrestha, MandanDasSharestha ,SumanSayami])
+    await Plotly.newPlot("gd", inOrder)
 
     await Plotly.toImage("gd", { format: "jpeg", height: 500, width: 700 }).then((url) => {
         const options = {
