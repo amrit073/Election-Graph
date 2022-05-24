@@ -23,7 +23,7 @@ mongoose.connect(process.env.mongoURL, {
 	useUnifiedTopology: true,
 }, (err) => {
 	if (err) return err
-	app.listen((process.env.PORT || 3000), () => {
+	app.listen((process.env.PORT || 3001), () => {
 		console.log('started listenig at port ');
 	})
 })
@@ -55,6 +55,7 @@ app.get('/api/v1/data', async (req, res) => {
 	const source = await fetch('https://election.ekantipur.com/pradesh-3/district-kathmandu/kathmandu?lng=eng')
 	const sourcetext = await source.text()
 		.catch(err => console.log(err))
+	
 	const $ = cheerio.load(sourcetext)
 	const names = []
 	const arrv = []
@@ -100,6 +101,9 @@ app.get('/api/v1/data', async (req, res) => {
 
 	})
 	
+	const dres = await fetch('https://viewcount073.herokuapp.com/getcount')
+	const dresj = await dres.json()
+	console.log(dresj);
 		
 })
 
