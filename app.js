@@ -52,58 +52,8 @@ app.get('/api/v1/image', (req, res) => {
 })
 
 app.get('/api/v1/data', async (req, res) => {
-	const source = await fetch('https://election.ekantipur.com/pradesh-3/district-kathmandu/kathmandu?lng=eng')
-	const sourcetext = await source.text()
-		.catch(err => console.log(err))
-	
-	const $ = cheerio.load(sourcetext)
-	const names = []
-	const arrv = []
-	const num = $('.list-group-flush .candidate-name')
-	const vote = $('.list-group-flush .vote-numbers')
-
-	$(num).each((i, el) => {
-		names.push(el.children[0].data)
-	})
-	$(vote).each((i, el) => {
-		arrv.push(el)
-	})
-	
-	
-	
-	// const to_send = []
-	const mayor = []
-	for (var i = 0; i < 5; i++) {
-		mayor.push({
-			name: names[i],
-			votes: arrv[i].children[0].data
-		})
-	}
-
-
 	myData.find({}).exec((err, data) => {
-		// console.log(data[data.length - 1].data[0].votes==mayor[0].votes)
-		// console.log(mayor[0].votes);
-		if (err) throw err
-		if (data[data.length - 1].data[0].votes !== mayor[0].votes) {
-			console.log('data is not same , uploading');
-			
-			myData.create({ data: mayor }, (err, data) => {
-				if (err) throw err;
-				myData.find({}).exec((err, data) => {
-					if (err) throw err
-					return res.send(data)
-				})
-			})
-		} else {
 			res.send(data)
-		}
-
-	})
-	
-	const dres = await fetch('https://viewcount073.herokuapp.com/getcount')
-	const dresj = await dres.json()
-	console.log(dresj);
-		
+	})		
 })
 
