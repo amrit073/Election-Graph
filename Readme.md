@@ -6,5 +6,8 @@ run  <br>
 docker run -it -p3000:3000 election
 </code>
 
-applicaiton will load on localhost:3000
+applicaiton will load on localhost:3000 <br>
 
+api endpoints:<br>
+<b> /api/v1/data <b> : all scraped data in json form <br>
+<b> /api/v1/image <b> : image of graph
